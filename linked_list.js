@@ -79,6 +79,11 @@ class LinkedList{
         return this.#size;
     }
 
+    // this method returns the first node in the list
+    get head(){
+        return this.#head;
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -104,4 +109,5 @@ testLinkedList.prepend(0);
 testLinkedList.append(3);
 testLinkedList.append(4);
 testLinkedList.prepend(-10);
-console.log(testLinkedList.size, testLinkedList.toString());
+console.log(testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value});
