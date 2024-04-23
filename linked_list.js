@@ -33,10 +33,12 @@ class Node{
 class LinkedList{
     #head;
     #tail;
+    #size;
 
     constructor(){
         this.#head = null;
         this.#tail = null;
+        this.#size = 0;
     }
 
     // this method adds a new node containing value to the end of the list
@@ -54,6 +56,7 @@ class LinkedList{
             this.#tail = newNode;
             //console.log('New list with tail', this.#tail.value,' - head', this.#head.value);
         }
+        this.#size++;
     }
 
     // this method adds a new node containing value to the start of the list
@@ -68,6 +71,12 @@ class LinkedList{
             this.#head = newNode;
             this.#tail = newNode;
         }
+        this.#size++;
+    }
+
+    // this method returns the total number of nodes in the list
+    get size(){
+        return this.#size;
     }
 
     // this method represents the LinkedList objects as strings, 
@@ -89,11 +98,10 @@ class LinkedList{
 
 
 let testLinkedList = new LinkedList();
-console.log(testLinkedList.toString());
 testLinkedList.append(1);
 testLinkedList.append(2);
 testLinkedList.prepend(0);
 testLinkedList.append(3);
 testLinkedList.append(4);
 testLinkedList.prepend(-10);
-console.log(testLinkedList.toString());
+console.log(testLinkedList.size, testLinkedList.toString());
