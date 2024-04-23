@@ -122,6 +122,18 @@ class LinkedList{
         } // else do nothing to do: the list is empty
     }
 
+    // this method removes the first element from the list
+    shift(){
+        // the list is not empty (note: no tail = no head)
+        if (this.#size == 1) {
+            this.#tail = null;
+            this.#head = null;
+            this.#size = 0;
+        } else if (this.#size > 1){
+            this.#head = this.#head.next;
+            this.#size--;
+        } // else do nothing to do: the list is empty
+    }
 
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
@@ -151,14 +163,16 @@ testLinkedList.append(4);
 testLinkedList.prepend(-10);
 console.log(testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+
 at_test = [-3, 0, 1,  4, 5, 6, 10];
 for (let at of at_test){
     let node = testLinkedList.at(at);
     console.log(`At ${at}`, node?node.value:node);
 }
+
 testLinkedList.pop();
 testLinkedList.pop();
-console.log('Remove the last two elements...\n',testLinkedList.toString());
+console.log('\nRemove the last two elements...\n',testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
 testLinkedList.pop();
 testLinkedList.pop();
@@ -167,4 +181,24 @@ console.log('Remove the last three elements...\n',testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
 testLinkedList.pop();
 console.log('Remove the last (only) element...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
+
+testLinkedList.append(1);
+testLinkedList.append(2);
+testLinkedList.prepend(0);
+testLinkedList.append(3);
+testLinkedList.append(4);
+testLinkedList.prepend(-10);
+console.log('\nRecreate the list...\n',testLinkedList.toString());
+testLinkedList.shift();
+testLinkedList.shift();
+console.log('Remove the first two elements...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+testLinkedList.shift();
+testLinkedList.shift();
+testLinkedList.shift();
+console.log('Remove the first three elements...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+testLinkedList.shift();
+console.log('Remove the first (only) element...\n',testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
