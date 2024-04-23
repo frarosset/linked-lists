@@ -180,6 +180,26 @@ class LinkedList{
 
         return str;
     }
+
+    // this method inserts a new node with the provided value at the given index.
+    insertAt(value, index){
+        if (index<0 || index > this.#size)
+            return null;
+
+        if (index==0){
+            this.prepend(value);
+            return;
+        } else if (index== this.#size) {
+            this.append(value);
+            return;
+        }
+        
+        // here we are sure the head / tail will not be modified
+        let nodeAtIndex = this.at(index-1);
+        let newNode = new Node(value,nodeAtIndex.next);
+        nodeAtIndex.next = newNode;
+        this.#size++;
+    }
 }
 
 
@@ -244,3 +264,24 @@ val_test = [-10, 2, 4, -5, null];
 for (let val of val_test){
     console.log(`Contains ${val}`, testLinkedList.contains(val), 'at', testLinkedList.find(val));
 }
+
+testLinkedList.insertAt(-11,-1);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(0,0);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(11,1);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(22,2);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(77,7);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(99,9);
+console.log(testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+testLinkedList.insertAt(1010,10);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(1212,12);
+console.log(testLinkedList.toString());
+testLinkedList.insertAt(1414,14);
+console.log(testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
