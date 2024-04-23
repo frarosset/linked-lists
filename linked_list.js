@@ -221,81 +221,83 @@ class LinkedList{
     }
 }
 
+// Test ----------------------------------------------------------------------------------------
 
 let testLinkedList = new LinkedList();
-testLinkedList.pop(); // do nothing... just for test
-testLinkedList.append(1);
-testLinkedList.append(2);
-testLinkedList.prepend(0);
-testLinkedList.append(3);
-testLinkedList.append(4);
-testLinkedList.prepend(-10);
-console.log(testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+let logPartialResult = () => {
+    console.log(testLinkedList.toString());
+    let head = testLinkedList.head;
+    let tail = testLinkedList.tail;
+    console.log({size: testLinkedList.size, head: head? head.value : head, tail: tail ? [tail.value,tail.next] : tail});
+}
+logPartialResult();
+
+let append_test = [1,2,3,4];
+let prepend_test = [0, -1];
+for (let app of append_test){
+    testLinkedList.append(app);
+    console.log(`\nTrying to append ${app}`);
+    logPartialResult();
+}
+for (let prep of prepend_test){
+    testLinkedList.prepend(prep);
+    console.log(`\nTrying to prepend ${prep}`);
+    logPartialResult();
+}
 
 at_test = [-3, 0, 1,  4, 5, 6, 10];
 for (let at of at_test){
     let node = testLinkedList.at(at);
-    console.log(`At ${at}`, node?node.value:node);
+    console.log(`\nAt index ${at}: `, node?node.value:node);
 }
 
+while(testLinkedList.head){
+    testLinkedList.pop();
+    console.log(`\nTrying to remove the last element`);
+    logPartialResult();
+}
 testLinkedList.pop();
-testLinkedList.pop();
-console.log('\nRemove the last two elements...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
-testLinkedList.pop();
-testLinkedList.pop();
-testLinkedList.pop();
-console.log('Remove the last three elements...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
-testLinkedList.pop();
-console.log('Remove the last (only) element...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
+console.log(`\nTrying to remove the last element (do nothing)`);
+logPartialResult();
 
-testLinkedList.append(1);
-testLinkedList.append(2);
-testLinkedList.prepend(0);
-testLinkedList.append(3);
-testLinkedList.append(4);
-testLinkedList.prepend(-10);
-console.log('\nRecreate the list...\n',testLinkedList.toString());
+for (let app of append_test){
+    testLinkedList.append(app);
+}
+for (let prep of prepend_test){
+    testLinkedList.prepend(prep);
+}
+console.log('\n\n\nRecreate the list...\n',testLinkedList.toString());
+while(testLinkedList.head){
+    testLinkedList.shift();
+    console.log(`\nTrying to remove the first element`);
+    logPartialResult();
+}
 testLinkedList.shift();
-testLinkedList.shift();
-console.log('Remove the first two elements...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
-testLinkedList.shift();
-testLinkedList.shift();
-testLinkedList.shift();
-console.log('Remove the first three elements...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
-testLinkedList.shift();
-console.log('Remove the first (only) element...\n',testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
+console.log(`\nTrying to remove the first element (do nothing)`);
+logPartialResult();
 
-testLinkedList.append(1);
-testLinkedList.append(2);
-testLinkedList.prepend(0);
-testLinkedList.append(3);
-testLinkedList.append(4);
-testLinkedList.prepend(-10);
-console.log('\nRecreate the list...\n',testLinkedList.toString());
-val_test = [-10, 2, 4, -5, null];
+for (let app of append_test){
+    testLinkedList.append(app);
+}
+for (let prep of prepend_test){
+    testLinkedList.prepend(prep);
+}
+console.log('\n\n\nRecreate the list...\n',testLinkedList.toString());
+val_test = [-1, 2, 4, -5, null];
 for (let val of val_test){
-    console.log(`Contains ${val}`, testLinkedList.contains(val), 'at', testLinkedList.find(val));
+    console.log(`Contains ${val} ?`, testLinkedList.contains(val), 'at index', testLinkedList.find(val));
 }
 
 ins_test = [[-11,-1], [0,0], [11,1], [22,2], [77,7], [99,9], [1111,11],  [1313,13]];
 for (let ins of ins_test){
     testLinkedList.insertAt(ins[0],ins[1]);
     console.log(`\nTrying to insert ${ins[0]} at ${ins[1]}`);
-    console.log(testLinkedList.toString());
-    console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+    logPartialResult();
 }
 
 rem_test = [-1,0,1,8,8,9];
 for (let rem of rem_test){
     testLinkedList.removeAt(rem);
     console.log(`\nTrying to remove at ${rem}`);
-    console.log(testLinkedList.toString());
-    console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+    logPartialResult();
 }
