@@ -56,6 +56,20 @@ class LinkedList{
         }
     }
 
+    // this method adds a new node containing value to the start of the list
+    prepend(value){
+        let newNode = new Node(value);
+
+        // the list is not empty (note: no tail = no head)
+        if (this.#head){
+            newNode.next = this.#head;
+            this.#head = newNode;
+        } else {
+            this.#head = newNode;
+            this.#tail = newNode;
+        }
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -78,6 +92,8 @@ let testLinkedList = new LinkedList();
 console.log(testLinkedList.toString());
 testLinkedList.append(1);
 testLinkedList.append(2);
+testLinkedList.prepend(0);
 testLinkedList.append(3);
 testLinkedList.append(4);
+testLinkedList.prepend(-10);
 console.log(testLinkedList.toString());
