@@ -89,6 +89,21 @@ class LinkedList{
         return this.#tail;
     }
 
+    // this method returns the node at the given index
+    at(index){
+        if (index<0 || index >= this.#size)
+            return null;
+
+        let thisIdx = 0;
+        let thisNode = this.#head;
+        while (thisIdx != index){
+            thisNode = thisNode.next;
+            thisIdx++;
+        }
+
+        return thisNode;
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -116,3 +131,8 @@ testLinkedList.append(4);
 testLinkedList.prepend(-10);
 console.log(testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value});
+at_test = [-3, 0, 1,  4, 5, 6, 10];
+for (let at of at_test){
+    let node = testLinkedList.at(at);
+    console.log(`At ${at}`, node?node.value:node);
+}
