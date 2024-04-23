@@ -104,6 +104,25 @@ class LinkedList{
         return thisNode;
     }
 
+    
+    // this method removes the last element from the list
+    // a prev property is not present in Node objects in this implementation,
+    // hence you need to find the node preeceding the last one,
+    // which will be the new tail
+    pop(){
+        // the list is not empty (note: no tail = no head)
+        if (this.#size == 1) {
+            this.#tail = null;
+            this.#head = null;
+            this.#size = 0;
+        } else if (this.#size > 1){
+            this.#tail = this.at(this.#size-2);
+            this.#tail.next = null;
+            this.#size--;
+        } // else do nothing to do: the list is empty
+    }
+
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -123,6 +142,7 @@ class LinkedList{
 
 
 let testLinkedList = new LinkedList();
+testLinkedList.pop(); // do nothing... just for test
 testLinkedList.append(1);
 testLinkedList.append(2);
 testLinkedList.prepend(0);
@@ -130,9 +150,21 @@ testLinkedList.append(3);
 testLinkedList.append(4);
 testLinkedList.prepend(-10);
 console.log(testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value});
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
 at_test = [-3, 0, 1,  4, 5, 6, 10];
 for (let at of at_test){
     let node = testLinkedList.at(at);
     console.log(`At ${at}`, node?node.value:node);
 }
+testLinkedList.pop();
+testLinkedList.pop();
+console.log('Remove the last two elements...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+testLinkedList.pop();
+testLinkedList.pop();
+testLinkedList.pop();
+console.log('Remove the last three elements...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+testLinkedList.pop();
+console.log('Remove the last (only) element...\n',testLinkedList.toString());
+console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
