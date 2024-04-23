@@ -84,6 +84,11 @@ class LinkedList{
         return this.#head;
     }
 
+    // this method returns the last node in the list
+    get tail(){
+        return this.#tail;
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -110,4 +115,4 @@ testLinkedList.append(3);
 testLinkedList.append(4);
 testLinkedList.prepend(-10);
 console.log(testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value});
+console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value});
