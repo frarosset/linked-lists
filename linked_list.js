@@ -149,6 +149,22 @@ class LinkedList{
         return false;
     }
 
+    // this method returns the index of the node containing value, 
+    // or null if not found.
+    find(value){
+        let thisNode = this.#head;
+        let idx = 0;
+        
+        while (thisNode != null){
+            if (thisNode.value === value)
+                return idx;
+            thisNode = thisNode.next;
+            idx++;
+        }
+
+        return null;
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -226,5 +242,5 @@ testLinkedList.prepend(-10);
 console.log('\nRecreate the list...\n',testLinkedList.toString());
 val_test = [-10, 2, 4, -5, null];
 for (let val of val_test){
-    console.log(`Contains ${val}`, testLinkedList.contains(val));
+    console.log(`Contains ${val}`, testLinkedList.contains(val), 'at', testLinkedList.find(val));
 }
