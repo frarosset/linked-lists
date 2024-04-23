@@ -200,6 +200,25 @@ class LinkedList{
         nodeAtIndex.next = newNode;
         this.#size++;
     }
+
+    // this method remove the node at the given index.
+    removeAt(index){
+        if (index<0 || index >= this.#size)
+            return null;
+
+        if (index==0){
+            this.shift();
+            return;
+        } else if (index == this.#size-1) {
+            this.pop();
+            return;
+        }
+        
+        // here we are sure the head / tail will not be modified
+        let nodeAtIndex = this.at(index-1);
+        nodeAtIndex.next = nodeAtIndex.next.next;
+        this.#size--;
+    }
 }
 
 
@@ -265,23 +284,18 @@ for (let val of val_test){
     console.log(`Contains ${val}`, testLinkedList.contains(val), 'at', testLinkedList.find(val));
 }
 
-testLinkedList.insertAt(-11,-1);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(0,0);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(11,1);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(22,2);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(77,7);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(99,9);
-console.log(testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
-testLinkedList.insertAt(1010,10);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(1212,12);
-console.log(testLinkedList.toString());
-testLinkedList.insertAt(1414,14);
-console.log(testLinkedList.toString());
-console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+ins_test = [[-11,-1], [0,0], [11,1], [22,2], [77,7], [99,9], [1111,11],  [1313,13]];
+for (let ins of ins_test){
+    testLinkedList.insertAt(ins[0],ins[1]);
+    console.log(`\nTrying to insert ${ins[0]} at ${ins[1]}`);
+    console.log(testLinkedList.toString());
+    console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+}
+
+rem_test = [-1,0,1,8,8,9];
+for (let rem of rem_test){
+    testLinkedList.removeAt(rem);
+    console.log(`\nTrying to remove at ${rem}`);
+    console.log(testLinkedList.toString());
+    console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: testLinkedList.tail.value, next: testLinkedList.tail.next});
+}
