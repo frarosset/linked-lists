@@ -135,6 +135,20 @@ class LinkedList{
         } // else do nothing to do: the list is empty
     }
 
+    // this method returns true if the passed in value is in the list 
+    // and otherwise returns false
+    contains(value){
+        let thisNode = this.#head;
+        
+        while (thisNode != null){
+            if (thisNode.value === value)
+                return true;
+            thisNode = thisNode.next;
+        }
+
+        return false;
+    }
+
     // this method represents the LinkedList objects as strings, 
     // allowing to print them out and preview them in the console.
     // The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -202,3 +216,15 @@ console.log({size: testLinkedList.size, head: testLinkedList.head.value, tail: t
 testLinkedList.shift();
 console.log('Remove the first (only) element...\n',testLinkedList.toString());
 console.log({size: testLinkedList.size, head: testLinkedList.head, tail: testLinkedList.tail});
+
+testLinkedList.append(1);
+testLinkedList.append(2);
+testLinkedList.prepend(0);
+testLinkedList.append(3);
+testLinkedList.append(4);
+testLinkedList.prepend(-10);
+console.log('\nRecreate the list...\n',testLinkedList.toString());
+val_test = [-10, 2, 4, -5, null];
+for (let val of val_test){
+    console.log(`Contains ${val}`, testLinkedList.contains(val));
+}
